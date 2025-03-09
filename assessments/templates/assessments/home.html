@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Medical Terminology Assessments</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+        background: linear-gradient(to bottom, #ff7e5f, #feb47b, #fef5c3, #87CEEB); /* Atardecer con playa */
+        color: #333;
+        position: relative;
+      }
+
+      h1 {
+        color: #1e6091;
+        font-weight: 600;
+      }
+
+      .quiz-list {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .loading {
+        display: none;
+        color: #888;
+      }
+
+      button {
+        background-color: #1e6091;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #144e78;
+      }
+
+      .quiz-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        transition: transform 0.3s;
+      }
+
+      .quiz-card:hover {
+        transform: scale(1.05);
+      }
+
+      .quiz-card h3 {
+        color: #144e78;
+        margin-bottom: 8px;
+      }
+
+      .quiz-card p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      /* Corazón más pequeño y más abajo en la esquina izquierda */
+      .heart {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        top: 100px;
+        left: 20px;
+        transform: rotate(-45deg);
+        animation: heartbeat 1s infinite;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .heart::before {
+        top: -25px;
+        left: 0;
+      }
+
+      .heart::after {
+        left: 25px;
+        top: 0;
+      }
+
+      @keyframes heartbeat {
+        0%, 100% {
+          transform: rotate(-45deg) scale(1);
+        }
+        50% {
+          transform: rotate(-45deg) scale(1.2);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="heart"></div>
+
+    <h1>Welcome to Medical Terminology Assessments</h1>
+    <p>Select a quiz to get started and improve your medical terminology!</p>
+
+    <button
+      hx-get="/assessments/"
+      hx-trigger="click"
+      hx-target="#quiz-list"
+      hx-indicator=".loading"
+    >
+      Load Available Quizzes
+    </button>
+    <p class="loading">Loading quizzes...</p>
+
+    <div id="quiz-list" class="quiz-list">
+      <div class="quiz-card">
+        <h3>Basic Medical Terms</h3>
+        <p>Test your knowledge of fundamental medical terms.</p>
+      </div>
+
+      <div class="quiz-card">
+        <h3>Advanced Terminology</h3>
+        <p>Challenge yourself with complex medical terms.</p>
+      </div>
+
+      <div class="quiz-card">
+        <h3>Anatomy & Physiology</h3>
+        <p>Explore the terminology of the human body systems.</p>
+      </div>
+    </div>
+  </body>
+</html>
+
